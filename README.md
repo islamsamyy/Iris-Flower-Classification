@@ -1,34 +1,66 @@
 ﻿# Iris Flower Classification (`Iris-Flower-Classification`)
 
-A supervised machine learning classification project in Python (`iris.ipynb`) using **Logistic Regression** on `Iris.csv` to classify iris flowers into three species (*Setosa*, *Versicolor*, *Virginica*) from sepal and petal dimensions.
+## Table of Contents
+- [Executive Summary & Business Utility](#executive-summary--business-utility)
+- [Visual Showcase (UI & Dashboards)](#visual-showcase-ui--dashboards)
+- [System Architecture & Layers](#system-architecture--layers)
+- [Data Model & Dataset Schema](#data-model--dataset-schema)
+- [Model Pipeline & Evaluation](#model-pipeline--evaluation)
+- [Getting Started](#getting-started)
+- [Business Value, ROI & Growth Opportunities](#business-value-roi--growth-opportunities)
 
 ---
 
-## 1. Executive Summary & Purpose
-This project demonstrates an end-to-end supervised classification pipeline—from exploratory visualization to train/test splitting and multi-metric model evaluation.
+## Executive Summary & Business Utility
+`Iris-Flower-Classification` implements a clean, reproducible supervised machine learning classification workflow in Python (`iris.ipynb`, 15 cells) on `Iris.csv` (150 samples) using **Logistic Regression** to classify *Iris-setosa*, *Iris-versicolor*, and *Iris-virginica* from morphological measurements.
 
-## 2. Pipeline Architecture & Layers
+---
+
+## Visual Showcase (UI & Dashboards)
+Exploratory & evaluation visualization extracted from `iris.ipynb`:
+
+![Iris Classification Plot](./docs/images/chart_1.png)
+
+---
+
+## System Architecture & Layers
 ```mermaid
 flowchart LR
-    Data["Iris.csv (Pandas)"] --> EDA["EDA & Visualization (Matplotlib / Seaborn)"]
-    EDA --> Split["train_test_split (scikit-learn)"]
-    Split --> Model["LogisticRegression"]
-    Model --> Eval["Evaluation (Accuracy, Recall, F1, Classification Report)"]
+    L1["1. Data Ingestion (Iris.csv • Pandas)"] --> L2["2. Exploratory Visualization (Matplotlib • Seaborn)"]
+    L2 --> L3["3. Train/Test Split & Modeling (LogisticRegression)"]
+    L3 --> L4["4. Evaluation (Accuracy, Recall, F1, Classification Report)"]
 ```
 
-| Layer | Tools & Methods |
+| Layer | Tools & Libraries |
 | :--- | :--- |
-| **Data Ingestion & Manipulation** | `pandas`, `numpy` (`Iris.csv`) |
-| **Exploratory Data Analysis** | `matplotlib.pyplot`, `seaborn` |
-| **Modeling** | `sklearn.linear_model.LogisticRegression`, `train_test_split` |
-| **Evaluation** | `accuracy_score`, `f1_score`, `recall_score`, `classification_report` |
+| **Data Processing** | `pandas`, `numpy` |
+| **Visualization** | `matplotlib.pyplot`, `seaborn` |
+| **ML Modeling** | `sklearn.model_selection.train_test_split`, `sklearn.linear_model.LogisticRegression` |
+| **Metrics** | `accuracy_score`, `f1_score`, `recall_score`, `classification_report` |
 
-## 3. Getting Started
+---
+
+## Data Model & Dataset Schema
+- **Source**: `Iris.csv` (**150 rows**)
+- **Columns**: `Id`, `SepalLengthCm`, `SepalWidthCm`, `PetalLengthCm`, `PetalWidthCm`, `Species`
+
+---
+
+## Model Pipeline & Evaluation
+1. Load & inspect `Iris.csv` distributions with Seaborn/Matplotlib.
+2. Split into training and test sets (`train_test_split`).
+3. Fit `LogisticRegression` and evaluate multi-class precision, recall, F1, and accuracy.
+
+---
+
+## Getting Started
 ```bash
 git clone https://github.com/islamsamyy/Iris-Flower-Classification.git
 cd Iris-Flower-Classification
 jupyter notebook iris.ipynb
 ```
 
-## 4. Business Value & Growth Opportunities
-- **Reusable Classification Template**: Serves as a clean benchmark baseline for multi-class tabular classification problems (e.g., product categorization, customer tiering) and can be wrapped in a FastAPI inference endpoint for production demos.
+---
+
+## Business Value, ROI & Growth Opportunities
+- **Modular Tabular Classification Baseline**: Serves as a clean template for rapid multi-class classification PoCs (e.g., product SKU categorization, customer segment classification) and can be wrapped in a FastAPI inference service.
